@@ -1,0 +1,38 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #384448;
+}
+
+.card {
+  background: linear-gradient(#00bcd4, #384448);
+  padding: 40px;
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  background: #00bcd4;
+  color: white;
+  font-weight: bold;
+}
+
+span {
+  color: cyan;
+  cursor: pointer;
+}
