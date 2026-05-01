@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { FaHome, FaSearch, FaComments, FaCog, FaUser } from "react-icons/fa";
 import "./Styling/home.css";
 
 export default function Home() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // just clear anything if you later add auth
     alert("Logged out successfully");
     navigate("/");
   };
@@ -23,6 +23,34 @@ export default function Home() {
         </div>
 
         <button onClick={handleLogout}>Logout</button>
+      </div>
+
+      
+      <div className="bottom-nav">
+        <div className="nav-item" >
+          <FaHome />
+          <span>Home</span>
+        </div>
+
+        <div className="nav-item" onClick={()=>navigate("/search")}>
+          <FaSearch />
+          <span>Search</span>
+        </div>
+
+        <div className="nav-item" >
+          <FaComments />
+          <span>Chat</span>
+        </div>
+
+        <div className="nav-item" onClick={()=>navigate("/settings")}>
+          <FaCog />
+          <span>Settings</span>
+        </div>
+
+        <div className="nav-item">
+          <FaUser />
+          <span>Profile</span>
+        </div>
       </div>
     </div>
   );

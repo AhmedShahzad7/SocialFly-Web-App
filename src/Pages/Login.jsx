@@ -33,6 +33,7 @@ export default function Login() {
         if (!user) {
             throw new Error("User not returned from backend");
         }
+        localStorage.setItem("user", JSON.stringify(res.user));
       alert("Welcome " + res.user.email);
       navigate("/home");
     } catch (err) {

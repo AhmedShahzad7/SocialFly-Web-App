@@ -1,0 +1,52 @@
+.settings-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #00bcd4 20%, #ffffff 100%);
+  padding: 20px;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.header-icon {
+  font-size: 26px;
+  margin-right: 10px;
+}
+
+.settings-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.menu-container {
+  margin-top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  background: #f9fbff;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e1e8f0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-icon {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.menu-text {
+  font-size: 16px;
+  color: #00bcd4;
+}
+
+.menu-item:hover {
+  transform: scale(1.02);
+  background: #eefcff;
+}
