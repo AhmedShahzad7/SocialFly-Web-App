@@ -1,83 +1,125 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { FaSearch, FaUserPlus, FaUserMinus } from "react-icons/fa";
+import Navbar from "./Navbar/Navbar"; 
 import "./Styling/search.css";
-import authService from "../services/authService";
 
 export default function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [profileData, setProfileData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getAllUsers = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/test"); // temp API
-      const data = await res.json();
-      setProfileData(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  // 1. Fetch Real Data with 'isFriend' Status
   useEffect(() => {
-    getAllUsers();
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/users/all", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!response.ok) throw new Error("Failed to fetch users");
+
+        const data = await response.json();
+        setProfileData(data);
+      } catch (error) {
+        console.error("Search error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchUsers();
   }, []);
-  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const filteredUsers = profileData.filter((item) => {
-  return (
-    item.username?.toLowerCase().includes(searchInput.toLowerCase()) &&
-    item.username !== currentUser?.username   
-  );
-});
+    return item.username?.toLowerCase().includes(searchInput.toLowerCase());
+  });
 
-  // 🔹 Send friend request (dummy for now)
-  const sendFriendRequest = async (username) => {
+  // 2. Dynamic Toggle: Add or Unfriend
+  const handleToggleFriend = async (username, isCurrentlyFriend) => {
+    // Determine which endpoint to hit
+    const endpoint = isCurrentlyFriend ? `/unfriend/${username}` : `/add-friend/${username}`;
+
+    // Optimistically update the UI so it feels instant
+    setProfileData((prevData) => 
+      prevData.map(user => 
+        user.username === username ? { ...user, isFriend: !isCurrentlyFriend } : user
+      )
+    );
+
     try {
-      alert(`Friend request sent to ${username}`);
-      // later: call backend API
-    } catch (err) {
-      console.log(err);
+      const response = await fetch(`http://localhost:5000/api/users${endpoint}`, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Action failed");
+
+    } catch (error) {
+      console.error("Error toggling friend status:", error);
+      alert("Action failed. Reverting...");
+      // Revert UI if the network request fails
+      setProfileData((prevData) => 
+        prevData.map(user => 
+          user.username === username ? { ...user, isFriend: isCurrentlyFriend } : user
+        )
+      );
     }
   };
 
   return (
-    <div className="search-container">
-
-      <div className="search-bar-container">
-        <input
-          type="text"
-          placeholder="Enter Username"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          className="search-bar"
-        />
+    <div className="search-wrapper">
+      <div className="search-header">
+        <h2>Find Friends</h2>
+        <div className="search-input-wrapper">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search usernames..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </div>
 
-      <div className="profile-container">
-        {filteredUsers.length > 0 ? (
-          filteredUsers.map((item, index) => (
-            <div key={index} className="profile-item">
+      <div className="search-results-container">
+        {isLoading ? (
+          <p className="no-results">Loading users...</p>
+        ) : filteredUsers.length > 0 ? (
+          filteredUsers.map((item, index) => {
+            return (
+              <div key={index} className="user-card">
+                <div className="user-info">
+                  <img
+                    src={item.profileUrl || "https://via.placeholder.com/150/E2E8F0/64748B?text=User"}
+                    alt={`${item.username}'s avatar`}
+                    className="user-avatar"
+                  />
+                  <span className="user-name">{item.username}</span>
+                </div>
 
-              <img
-                src={item.profileUrl || "https://via.placeholder.com/50"}
-                alt="profile"
-                className="profile-image"
-              />
-
-              <span className="profile-text">{item.username}</span>
-
-              <button
-                className="add-friend-btn"
-                onClick={() => sendFriendRequest(item.username)}
-              >
-                Add Friend
-              </button>
-
-            </div>
-          ))
+                {/* Dynamic Button toggles based on item.isFriend */}
+                <button
+                  className={item.isFriend ? "unfriend-btn" : "add-friend-btn"}
+                  onClick={() => handleToggleFriend(item.username, item.isFriend)}
+                >
+                  {item.isFriend ? <FaUserMinus className="btn-icon" /> : <FaUserPlus className="btn-icon" />}
+                  <span className="btn-text">
+                    {item.isFriend ? "Unfriend" : "Add"}
+                  </span>
+                </button>
+              </div>
+            );
+          })
         ) : (
-          <p className="no-users">No usernames found</p>
+          <div className="no-results">
+            <p>No users found matching "{searchInput}"</p>
+          </div>
         )}
       </div>
 
+      <Navbar />
     </div>
   );
 }

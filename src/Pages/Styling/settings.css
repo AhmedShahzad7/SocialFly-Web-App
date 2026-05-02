@@ -50,3 +50,43 @@
   transform: scale(1.02);
   background: #eefcff;
 }
+
+/* --- Unfriend Button (Neutral State) --- */
+.unfriend-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  
+  /* Neutral Slate/Gray styling */
+  background-color: #F1F5F9; /* Soft gray background */
+  color: #64748B; /* Slate gray text */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: fit-content;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.unfriend-btn .btn-text,
+.unfriend-btn .btn-icon {
+  color: #64748B;
+  transition: color 0.2s ease;
+}
+
+/* Hovering gives a slightly darker shade to indicate interactivity */
+.unfriend-btn:hover {
+  background-color: #E2E8F0; 
+  color: #1E293B; 
+}
+
+.unfriend-btn:hover .btn-text,
+.unfriend-btn:hover .btn-icon {
+  color: #1E293B; 
+}

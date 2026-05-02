@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import "./Styling/login.css";
 
+
 export default function Login() {
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,69 +14,84 @@ export default function Login() {
 
   const handleLogin = async () => {
     if (!formData.email || !formData.password) {
-      alert("Fill all fields");
+      alert("Please fill in all fields.");
       return;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(formData.email)) {
-      alert("Invalid email");
+      alert("Please enter a valid email address.");
       return;
     }
 
+    setIsLoading(true);
+
     try {
-        console.log("LOGIN DATA:", formData);
       const res = await authService.login(formData);
-      console.log("RESPONSE:", res);
+      const user = res?.user;
 
-        const user = res?.user;
+      if (!user) {
+        throw new Error("User data not returned from backend");
+      }
 
-        if (!user) {
-            throw new Error("User not returned from backend");
-        }
-        localStorage.setItem("user", JSON.stringify(res.user));
-      alert("Welcome " + res.user.email);
+      // Keep localStorage for quick UI access (like displaying the user's name)
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Attach the cookie client-side (Expires in 7 days)
+      // Make sure your backend returns the ID as _id or id
+      const userId = user._id || user.id; 
+      document.cookie = `userId=${userId}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Strict`;
+
+      alert("Welcome back, " + user.email + "!");
       navigate("/home");
     } catch (err) {
-        console.log(err)
-      alert(err.response?.data?.message || "Login failed");
+      console.error(err);
+      alert(err.response?.data?.message || "Login failed. Please check your credentials.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1>Login Into Your Account</h1>
-        <h3>Welcome Back!</h3>
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-header">
+          <h1>Login to Your Account</h1>
+          <h3>Welcome Back!</h3>
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
-        />
+        <div className="login-form">
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
 
-        <button onClick={handleLogin}>Log In</button>
+          <button onClick={handleLogin} disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Log In"}
+          </button>
+        </div>
 
-        <p className="forgot">Forgot Password?</p>
-
-        <p>
-          Don’t have an account?
-          <span onClick={() => navigate("/signup")} > Sign Up</span>
-        </p>
+        <div className="login-footer">
+          <p className="forgot-password">Forgot Password?</p>
+          <p className="signup-prompt">
+            Don’t have an account? 
+            <span onClick={() => navigate("/signup")}> Sign Up</span>
+          </p>
+        </div>
       </div>
     </div>
   );
 }
- 

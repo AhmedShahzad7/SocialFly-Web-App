@@ -1,0 +1,297 @@
+/* --- Base Layout (Matches Home) --- */
+.chat-wrapper {
+  min-height: 100vh;
+  background-color: #F1F5F9; 
+  padding-bottom: 90px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Fixed Header (Matches Home) --- */
+.chat-header {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #E2E8F0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1E293B;
+  /* Max width calculation ensures alignment with the container */
+  max-width: calc(600px - 40px); /* 600px minus padding */
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-message-btn {
+  background: none;
+  border: none;
+  color: #1E3A8A; /* Matching your Darker Blue action colors */
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width:150px;
+}
+
+.new-message-btn:hover {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+/* --- Chat Container --- */
+.chat-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Chat List Item (Card Style) --- */
+.chat-list {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #F1F5F9;
+  transition: background 0.2s ease;
+}
+
+.chat-list-item:last-child {
+  border-bottom: none;
+}
+
+.chat-list-item:hover {
+  background: #F8FAFC; /* Subtle hover effect */
+}
+
+/* --- Chat Typography & Layout --- */
+.chat-avatar {
+  width: 48px; /* Slightly larger than post avatar for focus */
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #E2E8F0;
+  flex-shrink: 0;
+}
+
+.chat-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+  overflow: hidden; /* Truncates long text */
+}
+
+.chat-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-username {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.chat-timestamp {
+  font-size: 12px;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+.chat-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-last-message {
+  margin: 0;
+  font-size: 14px;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds '...' for long messages */
+  flex-grow: 1;
+}
+
+.chat-last-message.unread-text {
+  font-weight: 600;
+  color: #334155; /* Darker text if unread */
+}
+
+/* --- Unread Badge --- */
+.chat-unread-badge {
+  background-color: #1D4ED8; /* Deep Blue from your hover states */
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* --- New Chat Modal --- */
+.new-chat-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4); /* Dark slate semi-transparent */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.new-chat-modal {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1E293B;
+}
+
+.close-modal-btn {
+  background: #F1F5F9;
+  border: none;
+  color: #64748B;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+.modal-friends-list {
+  padding: 12px 0;
+  overflow-y: auto;
+}
+
+.modal-friend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-friend-item:hover {
+  background: #F8FAFC;
+}
+
+.modal-friend-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #E2E8F0;
+}
+
+.modal-friend-item span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.no-friends-msg {
+  text-align: center;
+  color: #94A3B8;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* --- Modal Search Bar --- */
+.modal-search {
+  padding: 12px 20px;
+  border-bottom: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
+}
+
+.modal-search input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1E293B;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+.modal-search input::placeholder {
+  color: #94A3B8;
+}
+
+.modal-search input:focus {
+  border-color: #1D4ED8;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1); /* Soft blue glow */
+}

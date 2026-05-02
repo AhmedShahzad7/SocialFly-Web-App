@@ -1,0 +1,160 @@
+/* --- Overlay & Container --- */
+.np-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.np-content {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Header --- */
+.np-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 15px;
+}
+
+.np-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.np-close-btn {
+  background: #F1F5F9;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.np-close-btn:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+/* --- Body & List --- */
+.np-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748B;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.np-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.np-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F8FAFC;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+}
+
+.np-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.np-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.np-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+/* --- Action Buttons --- */
+.np-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.np-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.np-btn.accept {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+.np-btn.accept:hover {
+  background: #1D4ED8;
+  color: #FFFFFF;
+}
+
+.np-btn.decline {
+  background: #FEF2F2;
+  color: #BE123C;
+}
+
+.np-btn.decline:hover {
+  background: #BE123C;
+  color: #FFFFFF;
+}
+
+.np-empty {
+  text-align: center;
+  color: #94A3B8;
+  font-size: 15px;
+  padding: 20px 0;
+}

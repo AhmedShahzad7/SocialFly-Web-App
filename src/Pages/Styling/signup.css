@@ -1,38 +1,110 @@
-.container {
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.signup-container {
+  min-height: 100vh; /* Changed to min-height so it doesn't cut off on smaller screens if the form is tall */
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #384448;
+  background-color: #F1F5F9; 
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px; /* Added top/bottom padding to give the taller card room to breathe */
+  box-sizing: border-box;
 }
 
-.card {
-  background: linear-gradient(#00bcd4, #384448);
-  padding: 40px;
-  border-radius: 20px;
-  width: 320px;
+.signup-card {
+  background: #FFFFFF;
+  padding: 40px 30px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px; 
   text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
-input {
+.signup-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1E293B;
+  margin: 0 0 5px 0;
+}
+
+.signup-header h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #64748B;
+  margin: 0 0 30px 0;
+}
+
+.signup-form input {
   display: block;
   width: 100%;
-  margin: 10px 0;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #E2E8F0;
+  background-color: #F8FAFC;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #1E293B;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  outline: none;
 }
 
-button {
-  padding: 12px;
+.signup-form input::placeholder {
+  color: #94A3B8;
+}
+
+.signup-form input:focus {
+  border-color: #00BCD4;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1);
+}
+
+.signup-form button {
+  margin-top: 10px;
+  padding: 14px;
   width: 100%;
-  border-radius: 10px;
-  background: #00bcd4;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00BCD4 0%, #0288D1 100%);
   color: white;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-span {
-  color: cyan;
+.signup-form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+}
+
+.signup-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.signup-footer {
+  margin-top: 25px;
+}
+
+.login-prompt {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0;
+}
+
+.login-prompt span {
+  color: #00BCD4;
+  font-weight: 600;
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.login-prompt span:hover {
+  color: #0288D1;
+  text-decoration: underline;
 }

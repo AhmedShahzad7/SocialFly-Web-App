@@ -1,22 +1,31 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
 const User = require("./models/User");
 const authRoutes = require("./routes/authRoutes");
+const postRoutes = require("./routes/postRoutes");
+const userRoutes = require("./routes/userRoutes"); 
+const chatRoutes = require("./routes/chatRoutes"); // 🔥 1. Import your new chat routes here!
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true, 
+}));
+
 app.use(express.json());
+app.use(cookieParser()); 
 
 mongoose.connect("mongodb+srv://AhmedShahzad7:SocialFly%402026@socialflycluster.o3zhpjd.mongodb.net/?appName=SocialFlyCluster")
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("MongoDB error:", err));
 
 app.use("/api/auth", authRoutes);
-app.get("/test", async (req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
+app.use("/api/posts", postRoutes);
+app.use("/api/users", userRoutes); 
+app.use("/api", chatRoutes); // 🔥 2. Mount the chat routes here!
 
 app.listen(5000, () => console.log("Server running"));

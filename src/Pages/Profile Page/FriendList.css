@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Base Layout --- */
+.friends-wrapper {
+  min-height: 100vh;
+  background-color: #F1F5F9; /* Slightly darker off-white to make the card pop */
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 60px;
+}
+
+/* --- Header & Search Section --- */
+.friends-header {
+  background: linear-gradient(135deg, #00BCD4 0%, #0288D1 100%);
+  padding: 40px 20px 80px 20px; /* Large bottom padding for the overlap */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-title {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0 0 20px 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94A3B8;
+  font-size: 16px;
+}
+
+.search-bar {
+  width: 100%;
+  height: 54px;
+  background-color: #FFFFFF;
+  border-radius: 16px; /* Squarer, more modern border radius */
+  padding: 0 20px 0 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #1E293B;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.search-bar::placeholder {
+  color: #94A3B8;
+}
+
+.search-bar:focus {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Main Content Container (The Overlap) --- */
+.friends-content-container {
+  max-width: 640px; /* Slightly wider than search bar for a nice frame */
+  margin: -40px auto 0 auto; /* Negative margin pulls it UP over the header */
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* --- Unified List Card --- */
+.unified-list-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Keeps the internal items from breaking the rounded corners */
+}
+
+/* --- Individual List Items --- */
+.friend-list-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #F1F5F9; /* Subtle divider instead of gaps */
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+/* Remove bottom border from the very last item */
+.friend-list-item:last-child {
+  border-bottom: none;
+}
+
+.friend-list-item:hover {
+  background-color: #F8FAFC;
+}
+
+.friend-avatar-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #E2E8F0;
+}
+
+.friend-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.friend-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1E293B;
+}
+
+/* --- Empty State --- */
+.empty-state {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #64748B;
+  font-size: 15px;
+  font-weight: 500;
+}
