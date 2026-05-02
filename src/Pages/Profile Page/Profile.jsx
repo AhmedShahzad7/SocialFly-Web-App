@@ -12,7 +12,8 @@ import {
 import "./Profile.css";
 import Navbar from "../Navbar//Navbar";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL ;
+console.log("API_URL =", API_URL);
 export default function Profile() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);

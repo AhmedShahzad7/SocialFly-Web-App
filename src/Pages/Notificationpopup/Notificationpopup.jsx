@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiX, FiCheck } from "react-icons/fi";
 import "./NotificationPopup.css"; // Check your casing here based on your file structure
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL ;
+console.log("API_URL =", API_URL);
 
 export default function NotificationPopup({ onClose, onActionComplete }) {
   const [requests, setRequests] = useState([]);

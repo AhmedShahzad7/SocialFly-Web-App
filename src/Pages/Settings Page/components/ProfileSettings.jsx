@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiCamera, FiX } from "react-icons/fi"; // <-- Import FiX here
 import "./ProfileSettings.css";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL;
+console.log("API_URL =", API_URL);
 
 export default function ProfileSettings({ onClose }) {
   const [formData, setFormData] = useState({

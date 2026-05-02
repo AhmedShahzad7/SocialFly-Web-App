@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ChatPage.css';
 import DMThread from './components/DMThread'; 
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL;
+console.log("API_URL =", API_URL);
 
 const ChatPage = () => {
   const [activeChat, setActiveChat] = useState(null);

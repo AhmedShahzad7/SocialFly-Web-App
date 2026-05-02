@@ -5,7 +5,8 @@ import "./Styling/home.css";
 import NotificationPopup from "./Notificationpopup/Notificationpopup";
 import CommentsPopup from "./CommentsPopup/CommentsPopup";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL ;
+console.log("API_URL =", API_URL);
 
 export default function Home() {
   const [posts, setPosts] = useState([]);

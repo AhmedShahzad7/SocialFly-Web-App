@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FiPenTool, FiImage, FiType, FiUploadCloud } from "react-icons/fi";
 import "./CreatePost.css";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL ;
+console.log("API_URL =", API_URL);
 
 export default function CreatePost() {
   const navigate = useNavigate();
