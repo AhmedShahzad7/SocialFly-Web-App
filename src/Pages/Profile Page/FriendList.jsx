@@ -3,6 +3,8 @@ import { FaSearch } from 'react-icons/fa';
 import './FriendList.css';
 import Navbar from '../Navbar/Navbar'; // Adjust path if needed!
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function FriendList() {
   const [listFriends, setListFriends] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -13,7 +15,7 @@ export default function FriendList() {
   useEffect(() => {
     const fetchFriendList = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/users/friends", {
+        const response = await fetch(`${API_URL}/api/users/friends`, {
           method: "GET",
           credentials: "include", // Required to send the secure cookie
         });

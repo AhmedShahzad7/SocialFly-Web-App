@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiX, FiSend } from "react-icons/fi";
 import "./CommentsPopup.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function CommentsPopup({ postId, onClose }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
@@ -10,7 +12,7 @@ export default function CommentsPopup({ postId, onClose }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/posts/comments/${postId}`, {
+        const response = await fetch(`${API_URL}/api/posts/comments/${postId}`, {
           credentials: "include"
         });
         
@@ -39,7 +41,7 @@ export default function CommentsPopup({ postId, onClose }) {
     });
 
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/comment/${postId}`, {
+      const response = await fetch(`${API_URL}/api/posts/comment/${postId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: commentText, date: currentDate }),

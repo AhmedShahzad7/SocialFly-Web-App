@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ChatPage.css';
 import DMThread from './components/DMThread'; 
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const ChatPage = () => {
   const [activeChat, setActiveChat] = useState(null);
   const [recentChats, setRecentChats] = useState([]);
@@ -13,7 +15,7 @@ const ChatPage = () => {
   useEffect(() => {
     const fetchInbox = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/chats/inbox", {
+        const res = await fetch(`${API_URL}/api/chats/inbox`, {
           credentials: "include",
         });
 

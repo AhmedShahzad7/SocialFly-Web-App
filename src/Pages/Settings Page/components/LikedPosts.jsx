@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiX, FiHeart } from "react-icons/fi";
 import "./LikedPosts.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function LikedPosts({ onClose }) {
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +12,7 @@ export default function LikedPosts({ onClose }) {
   useEffect(() => {
     const fetchLikedPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/posts/liked", {
+        const response = await fetch(`${API_URL}/api/posts/liked`, {
           method: "GET",
           credentials: "include", // Essential for reading the userId cookie
         });

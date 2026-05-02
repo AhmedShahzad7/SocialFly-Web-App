@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import "./Profile.css";
 import Navbar from "../Navbar//Navbar";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 export default function Profile() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
@@ -23,7 +25,7 @@ export default function Profile() {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/users/profile",
+          `${API_URL}/api/users/profile`,
           {
             method: "GET",
             credentials: "include",

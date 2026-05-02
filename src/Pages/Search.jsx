@@ -3,6 +3,8 @@ import { FaSearch, FaUserPlus, FaUserMinus } from "react-icons/fa";
 import Navbar from "./Navbar/Navbar"; 
 import "./Styling/search.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [profileData, setProfileData] = useState([]);
@@ -11,7 +13,7 @@ export default function Search() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/users/all", {
+        const response = await fetch(`${API_URL}/api/users/all`, {
           method: "GET",
           credentials: "include",
         });
@@ -44,7 +46,7 @@ export default function Search() {
     );
 
     try {
-      const response = await fetch(`http://localhost:5000/api/users${endpoint}`, {
+      const response = await fetch(`${API_URL}/api/users${endpoint}`, {
         method: "POST",
         credentials: "include",
       });

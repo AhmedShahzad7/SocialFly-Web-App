@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiX, FiCheck } from "react-icons/fi";
 import "./NotificationPopup.css"; // Check your casing here based on your file structure
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function NotificationPopup({ onClose, onActionComplete }) {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ export default function NotificationPopup({ onClose, onActionComplete }) {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/users/notifications", {
+        const response = await fetch(`${API_URL}/api/users/notifications`, {
           credentials: "include"
         });
         if (response.ok) {
@@ -29,7 +31,7 @@ export default function NotificationPopup({ onClose, onActionComplete }) {
   // Handle Accept or Decline
   const handleAction = async (requesterId, action) => {
     try {
-      const response = await fetch("http://localhost:5000/api/users/handle-request", {
+      const response = await fetch(`${API_URL}/api/users/handle-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ requesterId, action }),

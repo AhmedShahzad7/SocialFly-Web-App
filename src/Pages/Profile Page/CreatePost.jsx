@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FiPenTool, FiImage, FiType, FiUploadCloud } from "react-icons/fi";
 import "./CreatePost.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function CreatePost() {
   const navigate = useNavigate();
   const [postType, setPostType] = useState("txt");
@@ -47,7 +49,7 @@ const submitPost = async () => {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/api/posts/create", {
+      const response = await fetch(`${API_URL}/api/posts/create`, {
         method: "POST",
         body: formData, 
         credentials: "include", // <--- CRITICAL: This sends the cookie!

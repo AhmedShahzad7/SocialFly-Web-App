@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DMThread.css';
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const DMThread = ({ friend, goBack }) => {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
@@ -11,7 +13,7 @@ const DMThread = ({ friend, goBack }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/chats/${friend.id}`, {
+        const res = await fetch(`${API_URL}/api/chats/${friend.id}`, {
           credentials: "include",
         });
         const data = await res.json();
@@ -37,7 +39,7 @@ const DMThread = ({ friend, goBack }) => {
     if (!messageText.trim()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/chats/send", {
+      const res = await fetch(`${API_URL}/api/chats/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

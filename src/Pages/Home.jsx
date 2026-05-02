@@ -5,6 +5,8 @@ import "./Styling/home.css";
 import NotificationPopup from "./Notificationpopup/Notificationpopup";
 import CommentsPopup from "./CommentsPopup/CommentsPopup";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,14 +22,14 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const postsRes = await fetch("http://localhost:5000/api/posts/all", {
+        const postsRes = await fetch(`${API_URL}/api/posts/all`, {
           credentials: "include",
         });
         const postsData = await postsRes.json();
         setPosts(postsData);
 
         const notifRes = await fetch(
-          "http://localhost:5000/api/users/notifications",
+          `${API_URL}/api/users/notifications`,
           { credentials: "include" },
         );
         if (notifRes.ok) {
@@ -45,7 +47,7 @@ export default function Home() {
   const toggleLike = async (postId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/posts/like/${postId}`,
+        `${API_URL}/api/posts/like/${postId}`,
         {
           method: "POST",
           credentials: "include",
@@ -75,7 +77,7 @@ export default function Home() {
 
   const refreshNotifications = async () => {
     const notifRes = await fetch(
-      "http://localhost:5000/api/users/notifications",
+      `${API_URL}/api/users/notifications`,
       { credentials: "include" },
     );
     if (notifRes.ok) {

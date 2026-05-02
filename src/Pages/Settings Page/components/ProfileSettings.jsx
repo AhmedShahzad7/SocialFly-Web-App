@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiCamera, FiX } from "react-icons/fi"; // <-- Import FiX here
 import "./ProfileSettings.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function ProfileSettings({ onClose }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -18,7 +20,7 @@ export default function ProfileSettings({ onClose }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/users/profile", {
+        const response = await fetch(`${API_URL}/api/users/profile`, {
           method: "GET",
           credentials: "include",
         });
@@ -63,7 +65,7 @@ export default function ProfileSettings({ onClose }) {
         submitData.append("profileImage", imageFile);
       }
 
-      const response = await fetch("http://localhost:5000/api/users/update", {
+      const response = await fetch(`${API_URL}/api/users/update`, {
         method: "PUT",
         body: submitData,
         credentials: "include",
