@@ -8,7 +8,6 @@ export default function Search() {
   const [profileData, setProfileData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Fetch Real Data with 'isFriend' Status
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -35,12 +34,9 @@ export default function Search() {
     return item.username?.toLowerCase().includes(searchInput.toLowerCase());
   });
 
-  // 2. Dynamic Toggle: Add or Unfriend
   const handleToggleFriend = async (username, isCurrentlyFriend) => {
-    // Determine which endpoint to hit
     const endpoint = isCurrentlyFriend ? `/unfriend/${username}` : `/add-friend/${username}`;
 
-    // Optimistically update the UI so it feels instant
     setProfileData((prevData) => 
       prevData.map(user => 
         user.username === username ? { ...user, isFriend: !isCurrentlyFriend } : user
@@ -58,7 +54,6 @@ export default function Search() {
     } catch (error) {
       console.error("Error toggling friend status:", error);
       alert("Action failed. Reverting...");
-      // Revert UI if the network request fails
       setProfileData((prevData) => 
         prevData.map(user => 
           user.username === username ? { ...user, isFriend: isCurrentlyFriend } : user
@@ -99,7 +94,6 @@ export default function Search() {
                   <span className="user-name">{item.username}</span>
                 </div>
 
-                {/* Dynamic Button toggles based on item.isFriend */}
                 <button
                   className={item.isFriend ? "unfriend-btn" : "add-friend-btn"}
                   onClick={() => handleToggleFriend(item.username, item.isFriend)}

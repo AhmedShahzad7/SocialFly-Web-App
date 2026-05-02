@@ -5,7 +5,6 @@ const postSchema = new mongoose.Schema({
   post_txt: { type: String, default: "-" },
   post_url: { type: String, default: "-" },
 
-  // 🔥 Replace username with this:
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
   post_date: { type: String, required: true },

@@ -1,4 +1,3 @@
-/* --- Base Layout (Matches Home) --- */
 .chat-wrapper {
   min-height: 100vh;
   background-color: #F1F5F9; 
@@ -8,7 +7,6 @@
   align-items: center;
 }
 
-/* --- Fixed Header (Matches Home) --- */
 .chat-header {
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
@@ -30,8 +28,7 @@
   font-size: 20px;
   font-weight: 700;
   color: #1E293B;
-  /* Max width calculation ensures alignment with the container */
-  max-width: calc(600px - 40px); /* 600px minus padding */
+  max-width: calc(600px - 40px); 
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -42,7 +39,7 @@
 .new-message-btn {
   background: none;
   border: none;
-  color: #1E3A8A; /* Matching your Darker Blue action colors */
+  color: #1E3A8A; 
   cursor: pointer;
   padding: 4px;
   border-radius: 8px;
@@ -55,7 +52,6 @@
   color: #1D4ED8;
 }
 
-/* --- Chat Container --- */
 .chat-container {
   width: 100%;
   max-width: 600px;
@@ -64,7 +60,6 @@
   flex-direction: column;
 }
 
-/* --- Chat List Item (Card Style) --- */
 .chat-list {
   background: #FFFFFF;
   border-radius: 16px;
@@ -90,12 +85,11 @@
 }
 
 .chat-list-item:hover {
-  background: #F8FAFC; /* Subtle hover effect */
+  background: #F8FAFC;
 }
 
-/* --- Chat Typography & Layout --- */
 .chat-avatar {
-  width: 48px; /* Slightly larger than post avatar for focus */
+  width: 48px; 
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
@@ -108,7 +102,7 @@
   flex-direction: column;
   flex-grow: 1;
   gap: 4px;
-  overflow: hidden; /* Truncates long text */
+  overflow: hidden; 
 }
 
 .chat-top-row {
@@ -142,18 +136,17 @@
   color: #64748B;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Adds '...' for long messages */
+  text-overflow: ellipsis; 
   flex-grow: 1;
 }
 
 .chat-last-message.unread-text {
   font-weight: 600;
-  color: #334155; /* Darker text if unread */
+  color: #334155; 
 }
 
-/* --- Unread Badge --- */
 .chat-unread-badge {
-  background-color: #1D4ED8; /* Deep Blue from your hover states */
+  background-color: #1D4ED8;
   color: #FFFFFF;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -164,14 +157,13 @@
   text-align: center;
 }
 
-/* --- New Chat Modal --- */
 .new-chat-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 23, 42, 0.4); /* Dark slate semi-transparent */
+  background: rgba(15, 23, 42, 0.4); 
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   display: flex;
@@ -265,7 +257,6 @@
   font-size: 14px;
 }
 
-/* --- Modal Search Bar --- */
 .modal-search {
   padding: 12px 20px;
   border-bottom: 1px solid #E2E8F0;
@@ -283,7 +274,7 @@
   color: #1E293B;
   outline: none;
   transition: all 0.2s ease;
-  box-sizing: border-box; /* Ensures padding doesn't break width */
+  box-sizing: border-box; 
 }
 
 .modal-search input::placeholder {
@@ -293,5 +284,5 @@
 .modal-search input:focus {
   border-color: #1D4ED8;
   background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1); /* Soft blue glow */
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1); 
 }

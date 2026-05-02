@@ -7,7 +7,7 @@ const User = require("./models/User");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes"); 
-const chatRoutes = require("./routes/chatRoutes"); // 🔥 1. Import your new chat routes here!
+const chatRoutes = require("./routes/chatRoutes"); 
 
 const app = express();
 
@@ -26,6 +26,6 @@ mongoose.connect("mongodb+srv://AhmedShahzad7:SocialFly%402026@socialflycluster.
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes); 
-app.use("/api", chatRoutes); // 🔥 2. Mount the chat routes here!
+app.use("/api", chatRoutes); 
 
 app.listen(5000, () => console.log("Server running"));

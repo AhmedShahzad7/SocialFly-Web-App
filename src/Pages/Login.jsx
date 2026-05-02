@@ -34,11 +34,8 @@ export default function Login() {
         throw new Error("User data not returned from backend");
       }
 
-      // Keep localStorage for quick UI access (like displaying the user's name)
       localStorage.setItem("user", JSON.stringify(user));
 
-      // Attach the cookie client-side (Expires in 7 days)
-      // Make sure your backend returns the ID as _id or id
       const userId = user._id || user.id; 
       document.cookie = `userId=${userId}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Strict`;
 

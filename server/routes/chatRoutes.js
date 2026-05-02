@@ -3,33 +3,27 @@ const router = express.Router();
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const Post = require("../models/Post");
-const User = require("../models/User"); // <-- Import your User model
+const User = require("../models/User"); 
 const mongoose = require("mongoose");
-const Message = require("../models/Message"); // 🔥 ADD THIS
+const Message = require("../models/Message"); 
 
-// 1. GET INBOX (Recent Chats for ChatPage.jsx)
-// ==========================================
 router.get("/chats/inbox", async (req, res) => {
   try {
     const userId = req.cookies.userId;
     if (!userId) return res.status(401).json({ error: "Unauthorized." });
 
-    // 1. Get the user's friends list
     const user = await User.findById(userId).populate("friends", "username profileUrl status");
     if (!user) return res.status(404).json({ error: "User not found." });
 
-    // 2. Loop through friends to find the latest message for each
     const inbox = await Promise.all(
       user.friends.map(async (friend) => {
-        // Find the most recent message between the logged-in user and this friend
         const lastMessage = await Message.findOne({
           $or: [
             { sender: userId, receiver: friend._id },
             { sender: friend._id, receiver: userId }
           ]
-        }).sort({ timestamp: -1 }); // Sort by newest first
+        }).sort({ timestamp: -1 }); 
 
-        // Count unread messages from this friend
         const unreadCount = await Message.countDocuments({
           sender: friend._id,
           receiver: userId,
@@ -39,7 +33,7 @@ router.get("/chats/inbox", async (req, res) => {
         return {
           id: friend._id,
           username: friend.username,
-          avatar: friend.profileUrl || "https://i.pravatar.cc/150", // Fallback avatar
+          avatar: friend.profileUrl || "https://i.pravatar.cc/150", 
           status: friend.status || "Offline",
           lastMessage: lastMessage ? lastMessage.text : "Start a conversation!",
           timestamp: lastMessage ? lastMessage.timestamp : null,
@@ -48,10 +42,7 @@ router.get("/chats/inbox", async (req, res) => {
       })
     );
 
-    // Filter out friends you haven't messaged yet (optional) 
-    // const activeChats = inbox.filter(chat => chat.timestamp !== null);
     
-    // Sort inbox so the most recent chats appear at the top
     inbox.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     res.status(200).json(inbox);
@@ -61,28 +52,23 @@ router.get("/chats/inbox", async (req, res) => {
   }
 });
 
-// ==========================================
-// 2. GET DM THREAD (Message history with a specific friend)
-// ==========================================
 router.get("/chats/:friendId", async (req, res) => {
   try {
     const userId = req.cookies.userId;
     const { friendId } = req.params;
     if (!userId) return res.status(401).json({ error: "Unauthorized." });
 
-    // Mark all unread messages from this friend as "read" since we opened the chat
     await Message.updateMany(
       { sender: friendId, receiver: userId, read: false },
       { $set: { read: true } }
     );
 
-    // Fetch the conversation history
     const messages = await Message.find({
       $or: [
         { sender: userId, receiver: friendId },
         { sender: friendId, receiver: userId }
       ]
-    }).sort({ timestamp: 1 }); // Oldest first, so it reads top-to-bottom
+    }).sort({ timestamp: 1 }); 
 
     res.status(200).json(messages);
   } catch (error) {
@@ -91,9 +77,6 @@ router.get("/chats/:friendId", async (req, res) => {
   }
 });
 
-// ==========================================
-// 3. SEND A MESSAGE
-// ==========================================
 router.post("/chats/send", async (req, res) => {
   try {
     const userId = req.cookies.userId;
@@ -117,5 +100,4 @@ router.post("/chats/send", async (req, res) => {
   }
 });
 
-// At the very bottom of chatRoutes.js
 module.exports = router;

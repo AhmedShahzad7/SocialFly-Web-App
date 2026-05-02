@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './ChatPage.css';
-import DMThread from './components/DMThread'; // Importing the DM component
+import DMThread from './components/DMThread'; 
 
 const ChatPage = () => {
   const [activeChat, setActiveChat] = useState(null);
   const [recentChats, setRecentChats] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Modal & Search State
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // 🔥 NEW: Track search input
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // FETCH FROM BACKEND
   useEffect(() => {
     const fetchInbox = async () => {
       try {
@@ -31,19 +29,16 @@ const ChatPage = () => {
     fetchInbox();
   }, []);
 
-  // Handle starting a new chat from the modal
   const handleStartNewChat = (friend) => {
-    setIsModalOpen(false); // Close the modal
-    setSearchQuery("");    // Clear the search box for next time
-    setActiveChat(friend); // Open the DM Thread
+    setIsModalOpen(false); 
+    setSearchQuery("");    
+    setActiveChat(friend); 
   };
 
-  // 🔥 NEW: Filter friends based on the search query
   const filteredFriends = recentChats.filter((friend) =>
     friend.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // If a chat is selected, render the DMThread
   if (activeChat) {
     return (
       <DMThread 
@@ -111,7 +106,6 @@ const ChatPage = () => {
         </div>
       </main>
 
-      {/* The New Message Modal */}
       {isModalOpen && (
         <div className="new-chat-modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="new-chat-modal" onClick={(e) => e.stopPropagation()}>
@@ -124,7 +118,6 @@ const ChatPage = () => {
               </button>
             </div>
             
-            {/* 🔥 NEW: Search Input Form Area */}
             <div className="modal-search">
               <input 
                 type="text" 

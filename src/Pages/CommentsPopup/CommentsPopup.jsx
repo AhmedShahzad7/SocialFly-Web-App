@@ -7,7 +7,6 @@ export default function CommentsPopup({ postId, onClose }) {
   const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Fetch Real Comments from Backend
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -29,15 +28,12 @@ export default function CommentsPopup({ postId, onClose }) {
     fetchComments();
   }, [postId]);
 
-  // 2. Handle sending a real comment to the backend
   const handleSend = async () => {
     if (!newComment.trim()) return;
 
-    // Save current input and clear the box immediately for snappy UX
     const commentText = newComment;
     setNewComment(""); 
 
-    // Create a nicely formatted date string (e.g., "Oct 24, 2:30 PM")
     const currentDate = new Date().toLocaleDateString("en-US", {
       month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
     });
@@ -52,7 +48,6 @@ export default function CommentsPopup({ postId, onClose }) {
 
       if (response.ok) {
         const addedComment = await response.json();
-        // Append the database-confirmed comment to the list
         setComments((prev) => [...prev, addedComment]);
       }
     } catch (error) {
@@ -64,7 +59,6 @@ export default function CommentsPopup({ postId, onClose }) {
     <div className="cp-overlay" onClick={onClose}>
       <div className="cp-content" onClick={(e) => e.stopPropagation()}>
         
-        {/* Header */}
         <div className="cp-header">
           <h3>Comments</h3>
           <button className="cp-close-btn" onClick={onClose}>
@@ -72,7 +66,6 @@ export default function CommentsPopup({ postId, onClose }) {
           </button>
         </div>
 
-        {/* Comment List */}
         <div className="cp-body">
           {isLoading ? (
             <div className="cp-loading">Loading comments...</div>
@@ -80,7 +73,6 @@ export default function CommentsPopup({ postId, onClose }) {
             <div className="cp-list">
               {comments.map((comment) => (
                 <div key={comment._id} className="cp-item">
-                  {/* Notice we use comment.user?.profileUrl now! */}
                   <img 
                     src={comment.user?.profileUrl || "https://via.placeholder.com/150/E2E8F0/64748B?text=User"} 
                     alt={comment.user?.username || "User"} 
@@ -101,7 +93,6 @@ export default function CommentsPopup({ postId, onClose }) {
           )}
         </div>
 
-        {/* Input Bar */}
         <div className="cp-footer">
           <input 
             type="text" 

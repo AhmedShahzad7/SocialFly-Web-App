@@ -51,7 +51,6 @@
   background: #eefcff;
 }
 
-/* --- Unfriend Button (Neutral State) --- */
 .unfriend-btn {
   display: flex;
   align-items: center;
@@ -61,9 +60,8 @@
   font-weight: 600;
   font-size: 14px;
   
-  /* Neutral Slate/Gray styling */
-  background-color: #F1F5F9; /* Soft gray background */
-  color: #64748B; /* Slate gray text */
+  background-color: #F1F5F9; 
+  color: #64748B; 
   border: none;
   padding: 8px 16px;
   border-radius: 10px;
@@ -80,7 +78,6 @@
   transition: color 0.2s ease;
 }
 
-/* Hovering gives a slightly darker shade to indicate interactivity */
 .unfriend-btn:hover {
   background-color: #E2E8F0; 
   color: #1E293B; 

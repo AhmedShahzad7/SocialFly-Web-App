@@ -1,4 +1,3 @@
-/* --- Overlay & Container --- */
 .cp-overlay {
   position: fixed;
   top: 0;
@@ -19,14 +18,14 @@
   background: #FFFFFF;
   width: 100%;
   max-width: 500px;
-  height: 80vh; /* Fixed height so it doesn't stretch too tall */
+  height: 80vh; 
   max-height: 600px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   animation: slideUp 0.3s ease-out;
-  overflow: hidden; /* Keeps header and footer docked */
+  overflow: hidden; 
 }
 
 @keyframes slideUp {
@@ -34,7 +33,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Header --- */
 .cp-header {
   display: flex;
   justify-content: space-between;
@@ -71,10 +69,9 @@
   color: #1E293B;
 }
 
-/* --- Body & List --- */
 .cp-body {
-  flex: 1; /* Takes up remaining middle space */
-  overflow-y: auto; /* Scrollable */
+  flex: 1;
+  overflow-y: auto;
   padding: 20px 24px;
   background: #F8FAFC;
 }
@@ -103,7 +100,7 @@
 .cp-text-bubble {
   background: #FFFFFF;
   padding: 12px 16px;
-  border-radius: 0 16px 16px 16px; /* Chat bubble shape */
+  border-radius: 0 16px 16px 16px;
   border: 1px solid #E2E8F0;
   box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02);
   max-width: 100%;
@@ -142,7 +139,6 @@
   padding: 40px 0;
 }
 
-/* --- Footer Input --- */
 .cp-footer {
   display: flex;
   align-items: center;

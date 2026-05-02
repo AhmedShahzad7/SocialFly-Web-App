@@ -122,7 +122,7 @@
   align-items: center;
   gap: 20px;
   padding: 12px 20px;
-  border-top: 1px solid #F8FAFC; /* Subtle separator */
+  border-top: 1px solid #F8FAFC; 
 }
 
 .action-btn {
@@ -134,33 +134,28 @@
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
-  /* Explicitly setting the color to a Darker Blue */
   color: #1E3A8A; 
   transition: all 0.3s ease;
 }
 
 .action-icon {
   font-size: 20px;
-  /* Ensures the icon matches the label color */
   color: #1E3A8A; 
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .action-count {
-  /* Forcing Inter or System Sans-Serif specifically for the numbers */
   font-family: 'Inter', sans-serif; 
   font-size: 14px;
-  font-weight: 700; /* Bold for industrial readability */
-  color: #1E3A8A; /* Matching Darker Blue */
+  font-weight: 700; 
+  color: #1E3A8A; 
 }
 
-/* Action Hover & Active States */
 .action-btn:hover {
-  background: #EFF6FF; /* Very light blue tint on hover */
+  background: #EFF6FF; 
   transform: translateY(-1px);
 }
 
-/* Specific Hover for Like (Red focus) */
 .like-btn:hover {
   color: #BE123C; 
 }
@@ -169,7 +164,6 @@
   color: #BE123C;
 }
 
-/* Specific Hover for Comment (Blue focus) */
 .comment-btn:hover {
   color: #1D4ED8;
 }
@@ -178,26 +172,24 @@
   color: #1D4ED8;
 }
 
-/* Liked State (Persistence) */
 .like-btn.liked .action-icon,
 .like-btn.liked .action-count {
-  color: #E11D48; /* Solid Rose Red */
+  color: #E11D48; 
 }
 
 .like-btn.liked .action-icon {
   transform: scale(1.15);
 }
-/* Action Hover & Active States */
 .action-btn:hover {
   background: #F1F5F9;
 }
 
 .like-btn:hover {
-  color: #E11D48; /* Rose red */
+  color: #E11D48; 
 }
 
 .comment-btn:hover {
-  color: #1E40AF; /* Deep blue */
+  color: #1E40AF; 
 }
 
 .like-btn.liked {
@@ -208,7 +200,6 @@
   transform: scale(1.1);
 }
 
-/* End of Feed Message */
 .end-of-feed {
   text-align: center;
   padding: 20px 0 40px 0;

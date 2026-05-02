@@ -8,16 +8,14 @@ import {
   IoSettingsOutline,
   IoCloseOutline,
 } from "react-icons/io5";
-import Navbar from "../Navbar/Navbar"; // Assuming you want the navbar here!
+import Navbar from "../Navbar/Navbar";
 import "./Settings.css";
 import ProfileSettings from "./components/ProfileSettings";
 import LikedPosts from "./components/LikedPosts";
 export default function Settings() {
   const navigate = useNavigate();
-  // State to track which popup is currently open (null means none are open)
   const [activeModal, setActiveModal] = useState(null);
 
-  // We replaced 'path' with 'modalId'
   const menuItems = [
     { icon: <IoPersonOutline />, label: "Profile Detail", modalId: "profile" },
     { icon: <IoHeartOutline />, label: "Liked Posts", modalId: "liked" },
@@ -33,16 +31,13 @@ export default function Settings() {
     setActiveModal(null);
   };
 
-  // Dedicated logout handler for when they confirm in the popup
   const confirmLogout = () => {
-    // Clear cookies/local storage here
     alert("Logged out successfully");
     navigate("/");
   };
 
   return (
     <div className="settings-wrapper">
-      {/* Main Settings Content */}
       <div className="settings-container">
         <div className="settings-header">
           <IoSettingsOutline className="header-icon" />
@@ -65,17 +60,11 @@ export default function Settings() {
         </div>
       </div>
 
-      {/* 
-        --- POPUP OVERLAY SYSTEM --- 
-        If activeModal is NOT null, render the dark overlay and the popup box
-      */}
       {activeModal && (
         <div className="modal-overlay" onClick={closeModal}>
-          {/* Prevent clicks inside the modal from closing it */}
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
            
 
-            {/* Render different components based on which modal is active */}
             {activeModal === "profile" && (
               <ProfileSettings onClose={closeModal} />
             )}
@@ -109,7 +98,6 @@ export default function Settings() {
         </div>
       )}
 
-      {/* Floating Navbar */}
       <Navbar />
     </div>
   );

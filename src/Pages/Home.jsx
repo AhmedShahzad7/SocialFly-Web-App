@@ -9,7 +9,6 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Notification States
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [notifCount, setNotifCount] = useState(0);
   const [activeCommentPostId, setActiveCommentPostId] = useState(null);
@@ -18,18 +17,15 @@ export default function Home() {
     .find((row) => row.startsWith("userId="))
     ?.split("=")[1];
 
-  // 1. FETCH POSTS & NOTIFICATION COUNT
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch Posts
         const postsRes = await fetch("http://localhost:5000/api/posts/all", {
           credentials: "include",
         });
         const postsData = await postsRes.json();
         setPosts(postsData);
 
-        // Fetch Notification Count
         const notifRes = await fetch(
           "http://localhost:5000/api/users/notifications",
           { credentials: "include" },
@@ -46,8 +42,6 @@ export default function Home() {
     };
     fetchData();
   }, []);
-
-  // 2. FUNCTIONAL LIKE BUTTON
   const toggleLike = async (postId) => {
     try {
       const response = await fetch(
@@ -79,7 +73,6 @@ export default function Home() {
     }
   };
 
-  // Callback to refresh the badge count when a request is accepted/declined inside the popup
   const refreshNotifications = async () => {
     const notifRes = await fetch(
       "http://localhost:5000/api/users/notifications",
@@ -101,7 +94,6 @@ export default function Home() {
 
   return (
     <div className="home-wrapper">
-      {/* PERFECTLY ALIGNED HEADER */}
       <div
         className="home-header"
         style={{
@@ -129,7 +121,6 @@ export default function Home() {
           }}
         >
           <FaRegBell />
-          {/* Dynamic Badge - Only shows if count > 0 */}
           {notifCount > 0 && (
             <span
               style={{
@@ -155,7 +146,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* RENDER POPUP ONCE */}
       {isNotifOpen && (
         <NotificationPopup
           onClose={() => setIsNotifOpen(false)}
@@ -169,7 +159,6 @@ export default function Home() {
         />
       )}
 
-      {/* FEED CONTAINER */}
       <div className="feed-container">
         {posts.map((post) => {
           const isLikedByMe = post.likes.some(
@@ -230,7 +219,6 @@ export default function Home() {
                   onClick={() => setActiveCommentPostId(post._id)}
                 >
                   <FaRegComment className="action-icon" />
-                  {/* We will hook up the real comment count length later */}
                   <span className="action-count">
                     {post.comments ? post.comments.length : 0}
                   </span>
