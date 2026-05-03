@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DMThread.css';
 
-const API_URL = process.env.REACT_APP_API_URL ;
+const API_URL = "";
 console.log("API_URL =", API_URL);
 
 const DMThread = ({ friend, goBack }) => {

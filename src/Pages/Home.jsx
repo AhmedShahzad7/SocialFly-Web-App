@@ -5,7 +5,7 @@ import "./Styling/home.css";
 import NotificationPopup from "./Notificationpopup/Notificationpopup";
 import CommentsPopup from "./CommentsPopup/CommentsPopup";
 
-const API_URL = process.env.REACT_APP_API_URL ;
+const API_URL = "" ;
 console.log("API_URL =", API_URL);
 
 export default function Home() {
@@ -15,10 +15,8 @@ export default function Home() {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [notifCount, setNotifCount] = useState(0);
   const [activeCommentPostId, setActiveCommentPostId] = useState(null);
-  const currentUserId = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("userId="))
-    ?.split("=")[1];
+  const user = JSON.parse(localStorage.getItem("user"));
+  const currentUserId = user?._id || user?.id;
 
   useEffect(() => {
     const fetchData = async () => {

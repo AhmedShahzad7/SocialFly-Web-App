@@ -35,11 +35,9 @@ export default function Login() {
       }
 
       localStorage.setItem("user", JSON.stringify(user));
-
-      const userId = user._id || user.id; 
-      document.cookie = `userId=${userId}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Strict`;
-
+      
       alert("Welcome back, " + user.email + "!");
+
       navigate("/home");
     } catch (err) {
       console.error(err);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiX, FiHeart } from "react-icons/fi";
 import "./LikedPosts.css";
 
-const API_URL = process.env.REACT_APP_API_URL ;
+const API_URL = "";
 console.log("API_URL =", API_URL);
 
 export default function LikedPosts({ onClose }) {

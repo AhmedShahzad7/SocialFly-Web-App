@@ -3,7 +3,7 @@ import { FaSearch, FaUserPlus, FaUserMinus } from "react-icons/fa";
 import Navbar from "./Navbar/Navbar"; 
 import "./Styling/search.css";
 
-const API_URL = process.env.REACT_APP_API_URL ;
+const API_URL = "" ;
 console.log("API_URL =", API_URL);
 
 export default function Search() {
