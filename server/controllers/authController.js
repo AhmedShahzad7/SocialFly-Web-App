@@ -15,6 +15,12 @@ exports.login = async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
 
   console.log("MATCH RESULT:", isMatch);
+  res.cookie("userId", user._id, {
+    httpOnly: true,        
+    secure: true,          
+    sameSite: "none",      
+    maxAge: 24 * 60 * 60 * 1000 
+  });
 
   res.json({ user });
 };
@@ -43,6 +49,12 @@ exports.signup = async (req, res) => {
     });
 
     await user.save();
+    res.cookie("userId", user._id, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000 
+    });
 
     res.json({ message: "User created" });
   } catch (err) {
