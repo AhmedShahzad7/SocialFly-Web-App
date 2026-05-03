@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 import './FriendList.css';
 import Navbar from '../Navbar/Navbar'; // Adjust path if needed!
 
-const API_URL = "" ;
+const API_URL = "https://socialfly-web-app2-production.up.railway.app" ;
 console.log("API_URL =", API_URL);
 
 export default function FriendList() {

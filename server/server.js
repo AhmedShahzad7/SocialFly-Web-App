@@ -12,7 +12,7 @@ const chatRoutes = require("./routes/chatRoutes");
 const app = express();
 
 app.use(cors({
-  origin: true,
+  origin: "https://socialfly-web-app-frontend.vercel.app",
   credentials: true,
 }));
 

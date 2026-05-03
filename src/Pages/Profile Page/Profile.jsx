@@ -12,7 +12,7 @@ import {
 import "./Profile.css";
 import Navbar from "../Navbar//Navbar";
 
-const API_URL = "" ;
+const API_URL = "https://socialfly-web-app2-production.up.railway.app" ;
 console.log("API_URL =", API_URL);
 export default function Profile() {
   const navigate = useNavigate();

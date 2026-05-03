@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiCamera, FiX } from "react-icons/fi"; // <-- Import FiX here
 import "./ProfileSettings.css";
 
-const API_URL = "";
+const API_URL = "https://socialfly-web-app2-production.up.railway.app";
 console.log("API_URL =", API_URL);
 
 export default function ProfileSettings({ onClose }) {

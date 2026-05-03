@@ -5,7 +5,7 @@ import "./Styling/home.css";
 import NotificationPopup from "./Notificationpopup/Notificationpopup";
 import CommentsPopup from "./CommentsPopup/CommentsPopup";
 
-const API_URL = "" ;
+const API_URL = "https://socialfly-web-app2-production.up.railway.app" ;
 console.log("API_URL =", API_URL);
 
 export default function Home() {

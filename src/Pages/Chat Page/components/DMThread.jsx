@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DMThread.css';
 
-const API_URL = "";
+const API_URL = "https://socialfly-web-app2-production.up.railway.app";
 console.log("API_URL =", API_URL);
 
 const DMThread = ({ friend, goBack }) => {

@@ -3,7 +3,7 @@ import { FaSearch, FaUserPlus, FaUserMinus } from "react-icons/fa";
 import Navbar from "./Navbar/Navbar"; 
 import "./Styling/search.css";
 
-const API_URL = "" ;
+const API_URL = "https://socialfly-web-app2-production.up.railway.app" ;
 console.log("API_URL =", API_URL);
 
 export default function Search() {

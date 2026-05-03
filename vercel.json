@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:match*",
-      "destination": "https://socialfly-web-app2-production.up.railway.app/api/:match*"
-    }
-  ]
-}
